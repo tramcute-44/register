@@ -15,3 +15,16 @@
   </form>
 </body>
 </html
+<?php
+// Nhận dữ liệu từ form
+$username = $_POST['username'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // mã hóa mật khẩu
+
+// Lưu thông tin vào file
+$file = fopen("users.txt", "a");
+fwrite($file, "$username,$password\n");
+fclose($file);
+
+// Phản hồi người dùng
+echo "Đăng ký thành công cho người dùng: $username";
+?>
